@@ -1,18 +1,23 @@
+<p align="center">
+  <img src="docs/media/skillbridge-cover.jpg" alt="Illustration of a student connecting project work, study documents, and a learning path" width="100%" />
+</p>
+
 <h1 align="center">SkillBridge</h1>
 
 <p align="center"><strong>Turn real work into career evidence, and study material into a focused exam plan.</strong></p>
 
 <p align="center">
-  <a href="https://d2jf84xfst7f2n.cloudfront.net/">Live demo</a> ·
-  <a href="#quick-start">Run locally</a> ·
-  <a href="#project-structure">Project structure</a>
+  <a href="https://d2jf84xfst7f2n.cloudfront.net/"><img src="https://img.shields.io/badge/OPEN-LIVE_DEMO-563CFF?style=for-the-badge" alt="Open live demo" /></a>
+  <a href="#quick-start"><img src="https://img.shields.io/badge/RUN-LOCALLY-13B99B?style=for-the-badge" alt="Run locally" /></a>
+  <a href="#two-minute-demo"><img src="https://img.shields.io/badge/VIEW-2_MIN_DEMO-202A52?style=for-the-badge" alt="Two-minute demo steps" /></a>
 </p>
 
 <p align="center">
-  <img alt="React" src="https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white" />
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" />
-  <img alt="Vite" src="https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white" />
-  <img alt="AWS" src="https://img.shields.io/badge/AWS-CDK-FF9900?logo=amazonwebservices&logoColor=white" />
+  <img alt="React 19" src="https://img.shields.io/badge/React-19-149ECA?style=flat-square&logo=react&logoColor=white" />
+  <img alt="TypeScript 5" src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" />
+  <img alt="Vite 6" src="https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white" />
+  <img alt="AWS CDK" src="https://img.shields.io/badge/AWS-CDK-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white" />
+  <img alt="ASUR guided responses" src="https://img.shields.io/badge/ASUR-Guided_Responses-6B5CFF?style=flat-square" />
 </p>
 
 <p align="center">
@@ -24,7 +29,9 @@
 ## Contents
 
 - [Overview](#overview)
+- [Feature gallery](#feature-gallery)
 - [Features](#features)
+- [Two-minute demo](#two-minute-demo)
 - [Architecture](#architecture)
 - [Tech stack](#tech-stack)
 - [Project structure](#project-structure)
@@ -38,6 +45,17 @@
 SkillBridge helps students show what their projects demonstrate, find gaps in their public evidence, and build a focused **Proof Sprint**. Its **Exam Prep** area reads supported syllabus and past-paper files, suggests study priorities with page references, and generates practice questions, a seven-day plan, and a downloadable study guide.
 
 The application has a guest demo and a signed-in student journey. The guest demo keeps progress in the browser. On the deployed site, signed-in state uses Amazon Cognito, API Gateway, Lambda, and DynamoDB. Certificates are stored in a private S3 bucket.
+
+## Feature gallery
+
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/media/asur-feature.jpg" alt="Illustration of the ASUR robot beside a source-linked conversation" /><br /><strong>ASUR study and skill companion</strong><br /><sub>Feature illustration, not a screenshot</sub></td>
+    <td width="50%" align="center"><img src="docs/media/exam-prep-feature.jpg" alt="Illustration of study documents becoming a seven-day plan and PDF" /><br /><strong>Exam Prep and study PDF</strong><br /><sub>Feature illustration, not a screenshot</sub></td>
+  </tr>
+</table>
+
+The artwork introduces the features. The [live application](https://d2jf84xfst7f2n.cloudfront.net/) shows their actual interface and behavior.
 
 ## Features
 
@@ -53,9 +71,37 @@ The application has a guest demo and a signed-in student journey. The guest demo
 | Student account | Email/password sign-in through Cognito on the deployed site, with private state and certificate uploads. |
 | Interface | Responsive dashboard, light/dark preference, and an ASUR robot that opens and minimizes chat without losing the conversation. |
 
+### From evidence to an action
+
+| Step | Student sees | Why it matters |
+| --- | --- | --- |
+| **1 · Add work** | A public GitHub repository or project link in Evidence Library. | Keeps the source of each claim visible. |
+| **2 · Review signals** | Skill Map labels such as **strong**, **limited**, or **none**, with linked public file paths. | Makes uncertainty explicit instead of awarding unexplained skill scores. |
+| **3 · Build proof** | A focused Proof Sprint and public-link checks. | Converts a gap into a small task a student can actually complete. |
+
+### From syllabus to a study plan
+
+| Input | Output |
+| --- | --- |
+| Readable syllabus and past-paper text | Priority topics with reasons and document/page references |
+| Topics found in the uploaded material | Practice questions and study cues |
+| A chosen study focus | Seven-day plan and downloadable PDF guide |
+
+The **Upload syllabus** action appears on both the Overview dashboard and the Exam Prep page. ASUR can answer questions about readable uploaded text with page citations.
+
 ### Important distinction
 
 ASUR's deployed demo currently uses **guided responses** unless a Bedrock model is explicitly configured. A guided response is useful for source-linked questions, but it is not proof that generative AI is active. SkillBridge never treats study priorities as guaranteed exam questions or repository file paths as proof of code quality.
+
+## Two-minute demo
+
+1. Open the [live demo](https://d2jf84xfst7f2n.cloudfront.net/) and choose **Explore Guest demo**.
+2. Add or analyze a public repository in **Evidence Library**, then open **Skill Map** to inspect source-linked skill signals.
+3. Open **Proof Sprints** for one practical task tied to an evidence gap.
+4. Open **Exam Prep** from the left menu, or select **Upload syllabus** on the Overview dashboard. Add a readable TXT, Markdown, or text-based PDF. Review the page references, practice questions, seven-day plan, and study PDF.
+5. Click the **ASUR** robot and ask about an uploaded topic. Minimize and reopen chat to see that the conversation remains available.
+
+Guest progress stays in the browser. The deployed site's **Create student account** flow enables private saved state.
 
 ## Architecture
 
@@ -96,6 +142,7 @@ Guest study files are parsed in the browser. When a guest asks ASUR about a docu
 │   └── local-server.js            # Local API on port 8788
 ├── design/
 │   └── approved-dashboard-v2.png  # Dashboard design reference
+├── docs/media/                    # README cover and feature illustrations
 ├── infra/
 │   └── app.ts                     # AWS CDK stack
 ├── scripts/
@@ -118,9 +165,12 @@ Guest study files are parsed in the browser. When a guest asks ASUR about a docu
 ├── index.html
 ├── package.json
 ├── package-lock.json
+├── README.md
 ├── tsconfig.json
 └── vite.config.ts
 ```
+
+The main implementation starts in [`src/App.tsx`](src/App.tsx); the study workflow is in [`src/ExamPrepPage.tsx`](src/ExamPrepPage.tsx) and [`src/exam.ts`](src/exam.ts). The API behavior is in [`backend/handler.js`](backend/handler.js), while [`infra/app.ts`](infra/app.ts) defines the AWS resources. Test cases live in [`tests/`](tests/).
 
 Generated builds, local deployment outputs, credentials, temporary work, and unrelated personal files are excluded from this repository.
 
