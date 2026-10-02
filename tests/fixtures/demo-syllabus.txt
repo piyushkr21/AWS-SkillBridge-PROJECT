@@ -1,0 +1,7 @@
+Unit 1: API testing and automated integration tests.
+API testing covers HTTP methods, response codes, authentication, and error handling.
+Students should design tests for GET and POST endpoints with success and failure cases.
+Unit 2: Database design and SQL queries.
+Database design covers tables, keys, joins, indexes, and data integrity.
+Unit 3: Deployment and continuous integration.
+Deployment covers environment variables, build pipelines, and monitoring.

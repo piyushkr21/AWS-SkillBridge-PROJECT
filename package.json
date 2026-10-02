@@ -1,0 +1,43 @@
+{
+  "name": "skillbridge",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "dev:api": "node backend/local-server.js",
+    "build": "tsc -b && vite build",
+    "test": "node --test tests/*.test.mjs",
+    "preview": "vite preview --host 0.0.0.0",
+    "infra:bundle": "esbuild infra/app.ts --bundle --platform=node --target=node22 --format=esm --outfile=infra/app.mjs --external:aws-cdk-lib --external:constructs",
+    "preinfra:synth": "npm run infra:bundle",
+    "infra:synth": "cdk synth",
+    "preinfra:deploy": "npm run infra:bundle",
+    "infra:deploy": "cdk deploy --require-approval never"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.900.0",
+    "@aws-sdk/client-dynamodb": "^3.900.0",
+    "@aws-sdk/client-s3": "^3.900.0",
+    "@aws-sdk/lib-dynamodb": "^3.900.0",
+    "aws-amplify": "^6.15.0",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^0.468.0",
+    "pdfjs-dist": "^6.3.289",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "aws-cdk": "^2.1020.0",
+    "aws-cdk-lib": "^2.218.0",
+    "constructs": "^10.4.2",
+    "esbuild": "^0.25.0",
+    "jsdom": "^29.1.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
+}

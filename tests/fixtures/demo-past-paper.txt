@@ -1,0 +1,3 @@
+Question 1: Explain API testing for GET and POST endpoints. Include error handling.
+Question 2: Design integration tests for an authenticated REST API.
+Question 3: Compare SQL joins and indexes in database design.
